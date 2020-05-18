@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONF_FOLDER="$(dirname "$0")/../skel"
+
+for dst in $(find ${CONF_FOLDER} -type f)
+do
+	src=${dst/$CONF_FOLDER/$HOME}
+	dirname=$(dirname ${dst})
+	cp --verbose ${src} ${dst}
+done
