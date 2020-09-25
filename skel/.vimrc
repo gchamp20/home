@@ -13,12 +13,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 
-" Spacecing
-Plugin 'tpope/vim-sleuth'
-
-" Meson
-Plugin 'igankevich/mesonic'
-
 " Git
 Plugin 'tpope/vim-fugitive'
 
@@ -44,6 +38,13 @@ Plugin 'kergoth/vim-bitbake'
 " SystemTap
 Plugin 'nickhutchinson/vim-systemtap'
 
+" Generic
+Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-sleuth'
+
+" React
+Plugin 'MaxMEllon/vim-jsx-pretty'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -58,6 +59,16 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Color scheme
 
@@ -91,10 +102,6 @@ autocmd BufRead,BufNewFile *.env set filetype=xml
 autocmd BufRead,BufNewFile *.conf set filetype=xml shiftwidth=2 expandtab
 autocmd BufRead,BufNewFile *.qml set filetype=javascript
 
-" gchlog file settings
-autocmd VimEnter *.gchlog $pu=strftime('%n%Y-%m-%d %H:%M:%S%n===================%n%n')
-autocmd BufRead,BufNewFile *.gchlog set textwidth=80
-
 " Keyboard mappings "
 map <C-N> :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
@@ -113,3 +120,5 @@ let g:ycm_use_clangd = 0
 "let g:ycm_clangd_binary_path = exepath("clangd")
 
 set rtp+=~/dev/fzf
+
+set noincsearch
