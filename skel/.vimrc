@@ -112,6 +112,10 @@ nnoremap <F7> :Ag <C-R><C-W><CR>
 noremap <silent> <F4> :FSHere<cr>
 map <leader>b :Gblame<CR>
 
+" gchlog file settings
+autocmd VimEnter *.gchlog $pu=strftime('%n%Y-%m-%d %H:%M:%S%n===================%n%n')
+autocmd BufRead,BufNewFile *.gchlog set textwidth=80
+
 " YCM configuration
 " Let clangd fully control code completion
 "let g:ycm_clangd_uses_ycmd_caching = 0
