@@ -133,6 +133,9 @@ let g:ycm_use_clangd = 0
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
+let g:formatters_vue = ['eslint_local']
+let g:formatters_python = ['yapf']
+noremap <F3> :Autoformat<CR>
 
 set rtp+=~/dev/fzf
 
