@@ -1,0 +1,4 @@
+#!/bin/bash
+
+FILENAME="screenshot-`date +%Y-%m-%e_%H-%M-%S`"
+grim -g "$(slurp)" ~/Pictures/$FILENAME.png
