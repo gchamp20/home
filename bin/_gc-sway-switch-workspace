@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get available workspaces
+workspaces=$(swaymsg -t get_workspaces | jq -r '.[] | .name')
+
+# Select window with rofi
+selected=$(echo "$workspaces" | rofi -dmenu -i | awk '{print $1}')
+
+# Tell sway to focus said window
+swaymsg workspace $selected
