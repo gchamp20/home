@@ -19,6 +19,7 @@ Plugin 'tpope/vim-fugitive'
 "Cntrl
 Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf.vim'
+let g:fzf_layout = { 'down': '40%' }
 
 " Python
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
@@ -39,11 +40,15 @@ Plugin 'kergoth/vim-bitbake'
 Plugin 'nickhutchinson/vim-systemtap'
 
 " Generic
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-sleuth'
+Plugin 'chiel92/vim-autoformat'
 
 " React
 Plugin 'MaxMEllon/vim-jsx-pretty'
+
+" Node
+Plugin 'moll/vim-node'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -73,13 +78,14 @@ let g:syntastic_check_on_wq = 0
 " Color scheme
 
 " tmux settings
-if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-set termguicolors
+"if &term =~# '256color' && ( &term =~# '^screen'  || &term =~# '^tmux' )
+"	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"endif
+"set termguicolors
 
 set background=dark
+set t_Co=256
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
@@ -110,7 +116,7 @@ nnoremap <C-@> :Buffers<CR>
 nnoremap <F2> :YcmCompleter GoToDeclaration<CR>
 nnoremap <F7> :Ag <C-R><C-W><CR>
 noremap <silent> <F4> :FSHere<cr>
-map <leader>b :Gblame<CR>
+noremap <leader>b :Gblame<CR>
 
 " gchlog file settings
 autocmd VimEnter *.gchlog $pu=strftime('%n%Y-%m-%d %H:%M:%S%n===================%n%n')
@@ -122,6 +128,11 @@ autocmd BufRead,BufNewFile *.gchlog set textwidth=80
 let g:ycm_use_clangd = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 "let g:ycm_clangd_binary_path = exepath("clangd")
+
+" vim-autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 set rtp+=~/dev/fzf
 
