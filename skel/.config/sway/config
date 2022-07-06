@@ -17,7 +17,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term gnome-terminal
+set $term foot
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
@@ -25,7 +25,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/f30/default/normalish/f30.png fill
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -225,12 +225,7 @@ bar {
     }
 }
 
-input "1133:49948:Logitech_USB_Keyboard" {
-    xkb_options "caps:escape, grp:win_space_toggle"
-    xkb_layout "us,ca"
-}
-
-input "5426:532:Razer_Razer_BlackWidow_Ultimate_2016" {
+input * {
     xkb_options "caps:escape,grp:win_space_toggle"
     xkb_layout "us,ca"
 }
