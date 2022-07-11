@@ -21,6 +21,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
+Plugin 'itspriddle/vim-shellcheck'
+
 let g:fzf_layout = { 'down': '40%' }
 let g:fzf_preview_window = []
 
@@ -119,7 +121,7 @@ nnoremap <C-@> :Buffers<CR>
 nnoremap <F2> :YcmCompleter GoToDeclaration<CR>
 nnoremap <F7> :Ag <C-R><C-W><CR>
 noremap <silent> <F4> :FSHere<cr>
-noremap <leader>b :Gblame<CR>
+noremap <leader>b :Git blame<CR>
 
 " gchlog file settings
 autocmd VimEnter *.gchlog $pu=strftime('%n%Y-%m-%d %H:%M:%S%n===================%n%n')

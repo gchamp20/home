@@ -38,10 +38,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Example configuration:
 #
  exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
+          timeout 300 '/usr/bin/local/swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * dpms off"' \
                resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f -c 000000'
+          before-sleep '/usr/bin/local/swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -88,7 +88,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
     # lock screen
-    bindsym Ctrl+Shift+l exec swaylock -f -c 000000
+    bindsym Ctrl+Shift+l exec /usr/local/bin/swaylock -f -c 000000
 
     # switch workspace
     bindsym $mod+r exec /home/guchaj/gch_home/bin/_gc-sway-switch-workspace
