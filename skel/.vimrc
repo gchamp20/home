@@ -133,6 +133,17 @@ autocmd BufRead,BufNewFile *.gchlog set textwidth=80
 " let g:ycm_use_clangd = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 "let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_filter_diagnostics = {
+\ "cpp": {
+\      "regex": [ "Unknown.*", "Unsupported option.*" ],
+\    },
+\ "c": {
+\      "regex": [ "Unknown.*", "Unsupported option.*" ],
+\    }
+\ }
+
+" fzf config
+let FZF_DEFAULT_COMMAND="ag -l --hidden -g "" --ignore .git --ignore *.swp --ignore oe-workdir --ignore oe-logs"
 
 " vim-autoformat
 let g:autoformat_autoindent = 0
@@ -141,7 +152,5 @@ let g:autoformat_remove_trailing_spaces = 0
 let g:formatters_vue = ['eslint_local']
 let g:formatters_python = ['yapf']
 noremap <F3> :Autoformat<CR>
-
-"set rtp+=~/dev/fzf
 
 set noincsearch
