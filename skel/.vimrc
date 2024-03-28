@@ -1,85 +1,68 @@
 set nocompatible              " be iMproved, required filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+call plug#begin()
 
 " Git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 "Cntrl
-Plugin 'scrooloose/nerdtree'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
-Plugin 'itspriddle/vim-shellcheck'
+" Bash
+Plug 'itspriddle/vim-shellcheck'
 
 let g:fzf_layout = { 'down': '40%' }
 let g:fzf_preview_window = []
 
 " Python
-Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
+Plug 'google/yapf', { 'rtp': 'plugins/vim' }
 
 " C/C++
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'bfrg/vim-cpp-modern'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'bfrg/vim-cpp-modern'
 
 " Color scheme
-Plugin 'morhetz/gruvbox'
-Plugin 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 
 " Yocto
-Plugin 'kergoth/vim-bitbake'
-
-" SystemTap
-Plugin 'nickhutchinson/vim-systemtap'
+Plug 'git://git.yoctoproject.org/poky-contrib', { 'rtp' : 'bitbake/contrib/vim' }
 
 " Generic
-"Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-sleuth'
-Plugin 'chiel92/vim-autoformat'
+Plug 'chiel92/vim-autoformat'
+Plug 'sheerun/vim-polyglot'
 
-" React
-Plugin 'MaxMEllon/vim-jsx-pretty'
+" PlantUML
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
 
-" Node
-Plugin 'moll/vim-node'
+" Guile
+Plug 'HiPhish/guile.vim'
+autocmd BufRead,BufNewFile *.scm set ft=scheme.guile
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'luochen1990/rainbow'
+
+" A plugin that sends the current paragraph, or selected area to a
+" configured target.
+"
+" The first time in a session when you'll want to send something to the
+" target (via <Ctrl-C> <Ctrl-C>) it will ask you to point out which
+" buffer is the vim terminal
+Plug 'jpalardy/vim-slime'
+
+call plug#end()
+
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Color scheme
 
 " tmux settings
@@ -142,8 +125,12 @@ let g:ycm_filter_diagnostics = {
 \    }
 \ }
 
+
+let g:ycm_auto_hover=''
+
 " fzf config
-let FZF_DEFAULT_COMMAND="ag -l --hidden -g "" --ignore .git --ignore *.swp --ignore oe-workdir --ignore oe-logs"
+let $FZF_DEFAULT_COMMAND="ag -l -g \"\" --ignore .git --ignore .jj --ignore \"*.swp\" --ignore oe-workdir --ignore oe-logs --ignore venv --ignore build --skip-vcs-ignores "
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--ignore tags', fzf#vim#with_preview(), <bang>0)
 
 " vim-autoformat
 let g:autoformat_autoindent = 0
@@ -154,3 +141,12 @@ let g:formatters_python = ['yapf']
 noremap <F3> :Autoformat<CR>
 
 set noincsearch
+set tabstop=8
+
+" guile config
+let g:slime_target = "vimterminal"
+command GuileTerminal rightbelow vertical terminal guile
+
+" Disabled by default, and only enabled for .scm files.
+let g:rainbow_active = 0
+autocmd BufRead,BufNewFile *.scm :RainbowToggleOn
