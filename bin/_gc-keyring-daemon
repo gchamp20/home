@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+read -rsp "linux user password: " pass; echo -n "$pass" | gnome-keyring-daemon --unlock
